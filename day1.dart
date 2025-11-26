@@ -16,7 +16,15 @@ void main() {
   // dynamic name = "Namuna";
   // name = 20;
   List<dynamic> names = ["aayush", "ram"];
-  names.add("sam");
-  names[0] = "Stha";
+  // names.add("sam");
+  // names.remove("ram");
+  // names[0] = "Stha";
   print(names);
+
+  Map<String, dynamic> map = {"book": "Flutter", "published": 2017};
+  map['book'] = "Fluter 2.0";
+  map['somethingNew'] = "Just published "; 
+  
+
+
 }
