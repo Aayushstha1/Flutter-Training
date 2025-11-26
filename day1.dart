@@ -68,21 +68,43 @@
 //   return a + b;
 // }
 
+// void main() {}
+//   Student s1 = Student(name: "Aayush", rollNo: 2);
+//   s1.name = "Hari";
+//   s1.display();
+//   Student s2 = Student(name: "Aayusha", rollNo: 3);
+//   s2.display();
+// }
+
+// class Student {
+//   String name;
+//   int rollNo;
+//   String address;
+
+//   Student({required this.name, required this.rollNo, this.address = "Itahari"});
+
+//   void display() {
+//     print("Student name is $name and rollNo is $rollNo , $address");
+//   }
 void main() {
-  Student s1 = Student("Aayush", 2);
-  s1.name = "Hari";
-  s1.display();
-  Student s2 = Student("Aayusha", 3);
-  s2.display();
+  cow c1 = cow("RAM");
+  c1.walk();
+  c1.eat();
 }
 
-class Student {
+class Animal {
   String name;
-  int rollNo;
+  Animal(this.name);
 
-  Student(this.name, this.rollNo);
+  void eat() {
+    print("$name can eat");
+  }
+}
 
-  void display() {
-    print("Student name is $name and rollNo is $rollNo");
+class cow extends Animal {
+  cow(super.name);
+
+  void walk() {
+    print("${super.name} can walk");
   }
 }
