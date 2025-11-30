@@ -19,11 +19,9 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Product Listing")),
 
-      // Whole screen scroll
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // ---------------- iPhone ----------------
             productCard(
               color: Colors.purple,
               leftText: "iPhone",
@@ -32,7 +30,6 @@ class ProductPage extends StatelessWidget {
               price: "RS.1000",
             ),
 
-            // ---------------- Pixel ----------------
             productCard(
               color: Colors.blue,
               leftText: "pixel 1",
@@ -41,7 +38,6 @@ class ProductPage extends StatelessWidget {
               price: "RS.800",
             ),
 
-            // ---------------- Laptop ----------------
             productCard(
               color: Colors.green,
               leftText: "laptop",
@@ -50,7 +46,6 @@ class ProductPage extends StatelessWidget {
               price: "RS.2000",
             ),
 
-            // ---------------- Tablet ----------------
             productCard(
               color: Colors.amber,
               leftText: "tablet",
@@ -64,7 +59,6 @@ class ProductPage extends StatelessWidget {
     );
   }
 
-  // -------------------- SIMPLE CARD WIDGET --------------------
   Widget productCard({
     required Color color,
     required String leftText,
@@ -89,7 +83,6 @@ class ProductPage extends StatelessWidget {
             ),
           ),
 
-          // Right description
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(10),
