@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> products = [];
+
   @override
   void initState() {
     super.initState();
@@ -20,8 +21,6 @@ class _HomePageState extends State<HomePage> {
     Dio dio = Dio();
     try {
       final response = await dio.get("https://fakestoreapi.com/products");
-      // print(response.data);
-
       products = List.from(response.data);
       setState(() {});
     } catch (e) {
@@ -32,16 +31,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: products.isEmpty
-            ? Text("Product is empty")
-            : ListView.builder(
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  return Text(products[index]["title"]);
-                },
-              ),
-      ),
+      body: products.isEmpty
+          ? const Center(child: Text("Product is empty"))
+          : ListView.builder(
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Image.network(
+                        products[index]["image"],
+                        height: 120,
+                      ),
+                    ),
+                    Text(
+                      products[index]["title"],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      "Price: Rs. ${products[index]["price"]}",
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    const Divider(),
+                  ],
+                );
+              },
+            ),
     );
   }
 }
