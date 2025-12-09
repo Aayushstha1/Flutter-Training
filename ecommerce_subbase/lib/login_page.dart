@@ -1,21 +1,21 @@
-import 'package:flutter/material.dart';
 import 'package:ecommerce_subbase/helper.dart';
 import 'package:ecommerce_subbase/home_page.dart';
 import 'package:ecommerce_subbase/register_page.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState(); // FIXED
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  bool isObsecure = true;
+  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Login", // CHANGED
+                    "Login",
                     style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
                   ),
 
@@ -51,42 +51,41 @@ class _LoginPageState extends State<LoginPage> {
 
                   TextField(
                     controller: passwordController,
-                    obscureText: isObsecure,
+                    obscureText: isObscure,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            isObsecure = !isObsecure;
+                            isObscure = !isObscure;
                           });
                         },
                         icon: Icon(
-                          isObsecure ? Icons.visibility : Icons.visibility_off,
+                          isObscure ? Icons.visibility : Icons.visibility_off,
                         ),
                       ),
                       hintText: "Enter your password",
                       border: OutlineInputBorder(),
                     ),
                   ),
-
                   SizedBox(height: 24),
 
                   FilledButton(
                     onPressed: () async {
                       if (emailController.text.isEmpty ||
                           passwordController.text.isEmpty) {
-                        showSnackBar(context, "Empty email or Password");
+                        showSnackBar(context, "Empty email or password");
                         return;
                       }
                       try {
-                        final res = await Supabase.instance.client.auth
-                            .signInWithPassword(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
+                        final res = await Supabase.instance.client.auth.
+                        signInWithPassword(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
 
-                        print(res.toString());
+                        print(res.toString);
 
-                        showSnackBar(context, "Login successful");
+                        showSnackBar(context, "Sign in successful");
 
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => HomePage()),
@@ -95,19 +94,15 @@ class _LoginPageState extends State<LoginPage> {
                         showSnackBar(context, "failed: ${e.toString()}");
                       }
                     },
-                    child: Text("Login"), // CHANGED
+                    child: Text("Login"),
                   ),
-
                   SizedBox(height: 16),
 
-                  OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
-                      );
-                    },
-                    child: Text("Register"), // for navigation
-                  ),
+                  OutlinedButton(onPressed: () {
+
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> RegisterPage()));
+
+                  }, child: Text("Register")),
                 ],
               ),
             ),

@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:ecommerce_subbase/helper.dart';
 import 'package:ecommerce_subbase/home_page.dart';
+
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,11 +15,12 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  bool isObsecure = true;
+  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -50,16 +52,16 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   TextField(
                     controller: passwordController,
-                    obscureText: isObsecure,
+                    obscureText: isObscure,
                     decoration: InputDecoration(
-                      suffix: IconButton(
+                      suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            isObsecure = !isObsecure;
+                            isObscure = !isObscure;
                           });
                         },
                         icon: Icon(
-                          isObsecure ? Icons.visibility : Icons.visibility_off,
+                          isObscure ? Icons.visibility : Icons.visibility_off,
                         ),
                       ),
                       hintText: "Enter your password",
@@ -72,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: () async {
                       if (emailController.text.isEmpty ||
                           passwordController.text.isEmpty) {
-                        showSnackBar(context, "Empty emal or Paaword");
+                        showSnackBar(context, "Empty email or password");
                         return;
                       }
                       try {
@@ -81,15 +83,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           password: passwordController.text,
                         );
 
-                        print(res.toString());
+                        print(res.toString);
 
-                        showSnackBar(context, "SSign up successful");
+                        showSnackBar(context, "Sign up successful");
 
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => HomePage()),
                         );
                       } catch (e) {
-                        showSnackBar(context, "failed:${e.toString()}");
+                        showSnackBar(context, "failed: ${e.toString()}");
                       }
                     },
                     child: Text("Register"),
